@@ -66,7 +66,9 @@ func NewServer(dbFile, dbURL string) (server *GeoServer, err error) {
 		}
 	}
 	go server.run()
-	go server.keepDbCurrent(lastModified)
+	if len(dbURL) > 0 {
+		go server.keepDbCurrent(lastModified)
+	}
 	return
 }
 
