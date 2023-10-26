@@ -117,7 +117,6 @@ import (
 	"os"
 
 	"github.com/getlantern/golog"
-
 	"github.com/getlantern/go-geoserve/geoserve"
 )
 
@@ -127,11 +126,11 @@ var (
 
 func main() {
 	log.Debug("Creating GeoServer, this can take a while")
-	geoServer, err := geoserve.NewServer(os.Getenv("DB"), os.Getenv("DB_URL"))
+	geoServer, err := geoserve.NewServer(os.Getenv("GEOIP_DB"), os.Getenv("GEOIP_DB_URL"))
 	if err != nil {
 		log.Fatalf("Unable to create geoserve server: %s", err)
 	}
-	allowOrigin := os.Getenv("ALLOW_ORIGIN")
+	allowOrigin := os.Getenv("GEOIP_ALLOW_ORIGIN")
 	log.Debugf("Access-Control-Allow-Origin set to: %s", allowOrigin)
 	http.HandleFunc("/lookup/", func(resp http.ResponseWriter, req *http.Request) {
 		geoServer.Handle(resp, req, "/lookup/", allowOrigin)
