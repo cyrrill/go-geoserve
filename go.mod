@@ -1,4 +1,4 @@
-module github.com/getlantern/go-geoserve
+module github.com/cyrrill/go-geoserve
 
 go 1.17
 
