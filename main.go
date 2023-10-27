@@ -128,6 +128,7 @@ func main() {
 	log.Debug("Creating GeoServer, this can take a while")
 	log.Debug("dbFile: " + os.Getenv("GEOIP_DB"))
 	log.Debug("dbURL: " +  os.Getenv("GEOIP_DB_URL"))
+	log.Debug("port: " +  os.Getenv("GEOIP_PORT"))
 	geoServer, err := geoserve.NewServer(os.Getenv("GEOIP_DB"), os.Getenv("GEOIP_DB_URL"))
 	if err != nil {
 		log.Fatalf("Unable to create geoserve server: %s", err)
@@ -140,7 +141,7 @@ func main() {
 	http.HandleFunc("/lookup", func(resp http.ResponseWriter, req *http.Request) {
 		geoServer.Handle(resp, req, "/lookup", allowOrigin)
 	})
-	port := os.Getenv("PORT")
+	port := os.Getenv("GEOIP_PORT")
 	log.Debugf("About to listen at port: %s", port)
 	err = http.ListenAndServe(":"+port, nil)
 	if err != nil {
