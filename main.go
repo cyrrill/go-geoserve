@@ -117,7 +117,7 @@ import (
 	"os"
 
 	"github.com/getlantern/golog"
-	"github.com/getlantern/go-geoserve/geoserve"
+	"github.com/cyrrill/go-geoserve/geoserve"
 )
 
 var (
