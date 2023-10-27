@@ -52,6 +52,8 @@ func NewServer(dbFile, dbURL string) (server *GeoServer, err error) {
 		cacheGet: make(chan get, 10000),
 		dbUpdate: make(chan *geoip2.Reader),
 	}
+	log.Debug("dbFile: " + dbFile)
+	log.Debug("dbURL: " + dbURL)
 	var lastModified time.Time
 	if dbFile != "" {
 		server.db, lastModified, err = readDbFromFile(dbFile)
