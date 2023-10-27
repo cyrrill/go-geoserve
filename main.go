@@ -126,8 +126,8 @@ var (
 
 func main() {
 	log.Debug("Creating GeoServer, this can take a while")
-	log.Debug("dbFile: " + dbFile)
-	log.Debug("dbURL: " + dbURL)
+	log.Debug("dbFile: " + os.Getenv("GEOIP_DB"))
+	log.Debug("dbURL: " +  os.Getenv("GEOIP_DB_URL"))
 	geoServer, err := geoserve.NewServer(os.Getenv("GEOIP_DB"), os.Getenv("GEOIP_DB_URL"))
 	if err != nil {
 		log.Fatalf("Unable to create geoserve server: %s", err)
